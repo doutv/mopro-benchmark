@@ -10,7 +10,11 @@ export default function Home() {
                     Mopro Website Prover Tests
                 </h1>
 
-                <Prove circuit="multiplier2"></Prove>
+                <Prove circuit="complex-circuit-100k-100k"></Prove>
+                <Prove circuit="complex-circuit-400k-400k"></Prove>
+                <Prove circuit="complex-circuit-1000k-1000k"></Prove>
+                <Prove circuit="complex-circuit-1600k-1600k"></Prove>
+                {/* <Prove circuit="multiplier2"></Prove> */}
                 {/* <Prove circuit="keccak256_256_test"></Prove> */}
                 <div className="p-20"></div>
             </main>

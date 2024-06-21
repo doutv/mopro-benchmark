@@ -1,4 +1,28 @@
 {
+    "complex-circuit-100k-100k": {
+        "file": "complex-circuit-100k-100k",
+        "inputs": {
+            "a": 100000
+        }
+    },
+    "complex-circuit-400k-400k": {
+        "file": "complex-circuit-400k-400k",
+        "inputs": {
+            "a": 100000
+        }
+    },
+    "complex-circuit-1000k-1000k": {
+        "file": "complex-circuit-1000k-1000k",
+        "inputs": {
+            "a": 100000
+        }
+    },
+    "complex-circuit-1600k-1600k": {
+        "file": "complex-circuit-1600k-1600k",
+        "inputs": {
+            "a": 100000
+        }
+    },
     "multiplier2": {
         "file": "multiplier2",
         "inputs": { "a": 3, "b": 5 }

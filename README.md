@@ -14,6 +14,8 @@ See https://github.com/zkmopro/mopro
 # Build complex-circuit under mopro root repo
 # Then copy the circuits to this project
 cp -r ../mopro/mopro-core/examples/circom/complex-circuit ./core/circuits/complex-circuit
+# Copy final.zkey and wasm to web/public, used in web prover
+find ./core/circuits/complex-circuit/target -type f \( -name "*_final.zkey" -o -name "*.wasm" \) -exec cp {} ./web/public \;
 ```
 ### Build
 
