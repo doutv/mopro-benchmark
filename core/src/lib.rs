@@ -10,8 +10,8 @@ mod tests {
 
     #[test]
     fn test_prove_verify_simple() {
-        let wasm_path = "./circuits/multiplier2/target/multiplier2_js/multiplier2.wasm";
-        let zkey_path = "./circuits/multiplier2/target/multiplier2_final.zkey";
+        let wasm_path = "./circuits/complex-circuit/target/complex-circuit-100k-100k_js/complex-circuit-100k-100k.wasm";
+        let zkey_path = "./circuits/complex-circuit/target/complex-circuit-100k-100k_final.zkey";
 
         // Instantiate CircomState
         let mut circom_state = CircomState::new();
@@ -25,12 +25,9 @@ mod tests {
         // Prepare inputs
         let mut inputs = HashMap::new();
         let a = 3;
-        let b = 5;
-        let c = a * b;
         inputs.insert("a".to_string(), vec![BigInt::from(a)]);
-        inputs.insert("b".to_string(), vec![BigInt::from(b)]);
         // output = [public output c, public input a]
-        let expected_output = vec![Fr::from(c), Fr::from(a)];
+        let expected_output = vec![Fr::from(a), Fr::from(a)];
         let serialized_outputs = SerializableInputs(expected_output);
 
         // Proof generation

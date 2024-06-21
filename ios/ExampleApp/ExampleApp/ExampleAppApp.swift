@@ -13,10 +13,11 @@ struct ExampleAppApp: App {
     var body: some Scene {
         WindowGroup {
             // Enable the view you want
-            MultiplierCircuitView()
+            // MultiplierCircuitView()
             //KeccakCircuitView()
             //KeccakDylibCircuitView()
             //Halo2CircuitView()
+            ComplexCircuitView()
         }
     }
 }

@@ -10,8 +10,11 @@ See https://github.com/zkmopro/mopro
 
 ### Prepare
 
-See https://github.com/zkmopro/mopro?tab=readme-ov-file#how-to-use
-
+```sh
+# Build complex-circuit under mopro root repo
+# Then copy the circuits to this project
+cp -r ../mopro/mopro-core/examples/circom/complex-circuit ./core/circuits/complex-circuit
+```
 ### Build
 
 `mopro build` or `mopro build --platforms ios`

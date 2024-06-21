@@ -11,11 +11,17 @@ android_device_type = "arm64" # Options: x86_64, x86, arm, arm64
 build_mode = "release" # Options: debug, release
 
 [circuit]
-# multiplier2
 adapter = "circom"
-dir = "core/circuits/multiplier2"
-name = "multiplier2"
-ptau = "02"                       # ptau to use for trusted setup of circuit, "01" to "27"
+
+# multiplier2
+# dir = "core/circuits/multiplier2"
+# name = "multiplier2"
+# ptau = "02"                       # ptau to use for trusted setup of circuit, "01" to "27"
+
+# complex-circuit for benchmark
+dir = "core/circuits/complex-circuit"
+name = "complex-circuit-100k-100k"
+ptau = "21"
 
 # keccak256
 #dir = "core/circuits/keccak256"
