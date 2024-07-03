@@ -19,8 +19,8 @@ adapter = "circom"
 # ptau = "02"                       # ptau to use for trusted setup of circuit, "01" to "27"
 
 # complex-circuit for benchmark
-dir = "core/circuits/complex-circuit"
-name = "complex-circuit-100k-100k"
+dir = "core/circuits/ecdsa"
+name = "ecdsa"
 ptau = "21"
 
 # keccak256
