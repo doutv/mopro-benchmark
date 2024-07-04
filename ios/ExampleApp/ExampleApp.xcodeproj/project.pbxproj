@@ -10,7 +10,8 @@
 		5057A7E72C35040C00E2EBBF /* EcdsaCircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057A7E62C35040C00E2EBBF /* EcdsaCircuitView.swift */; };
 		5057A7ED2C354D8B00E2EBBF /* SwiftECC in Frameworks */ = {isa = PBXBuildFile; productRef = 5057A7EC2C354D8B00E2EBBF /* SwiftECC */; };
 		5057A7EF2C3647B400E2EBBF /* ECDSACircuitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057A7EE2C3647B400E2EBBF /* ECDSACircuitTests.swift */; };
-		5057A7F12C36780E00E2EBBF /* K1 in Frameworks */ = {isa = PBXBuildFile; productRef = 5057A7F02C36780E00E2EBBF /* K1 */; };
+		5057A7F62C368C3800E2EBBF /* secp256k1 in Frameworks */ = {isa = PBXBuildFile; productRef = 5057A7F52C368C3800E2EBBF /* secp256k1 */; };
+		5057A7FA2C368CF300E2EBBF /* secp256k1 in Frameworks */ = {isa = PBXBuildFile; productRef = 5057A7F92C368CF300E2EBBF /* secp256k1 */; };
 		50A0EA542C25302F00F623B1 /* ComplexCircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A0EA532C25302F00F623B1 /* ComplexCircuitView.swift */; };
 		56E6EC72191EAD3A5962B55A /* Pods_ExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72C8A7A95288D49E1FC887A7 /* Pods_ExampleApp.framework */; };
 		5AFEF211D91E79BC9BA7BCBC /* Pods_ExampleApp_ExampleAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEEC28F7FAAB743796D5BC0 /* Pods_ExampleApp_ExampleAppUITests.framework */; };
@@ -84,8 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5057A7F12C36780E00E2EBBF /* K1 in Frameworks */,
 				5057A7ED2C354D8B00E2EBBF /* SwiftECC in Frameworks */,
+				5057A7FA2C368CF300E2EBBF /* secp256k1 in Frameworks */,
 				56E6EC72191EAD3A5962B55A /* Pods_ExampleApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EC49437C8CB5BF3409BC87C /* Pods_ExampleAppTests.framework in Frameworks */,
+				5057A7F62C368C3800E2EBBF /* secp256k1 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +228,7 @@
 			name = ExampleApp;
 			packageProductDependencies = (
 				5057A7EC2C354D8B00E2EBBF /* SwiftECC */,
-				5057A7F02C36780E00E2EBBF /* K1 */,
+				5057A7F92C368CF300E2EBBF /* secp256k1 */,
 			);
 			productName = ExampleApp;
 			productReference = CEF891212B9834BB0033AE93 /* ExampleApp.app */;
@@ -247,6 +249,9 @@
 				CEF891332B9834BC0033AE93 /* PBXTargetDependency */,
 			);
 			name = ExampleAppTests;
+			packageProductDependencies = (
+				5057A7F52C368C3800E2EBBF /* secp256k1 */,
+			);
 			productName = ExampleAppTests;
 			productReference = CEF891312B9834BC0033AE93 /* ExampleAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -303,8 +308,8 @@
 			);
 			mainGroup = CEF891182B9834BB0033AE93;
 			packageReferences = (
-				5057A7E82C35453E00E2EBBF /* XCRemoteSwiftPackageReference "K1" */,
 				5057A7EB2C354D8300E2EBBF /* XCRemoteSwiftPackageReference "SwiftECC" */,
+				5057A7F22C368B8D00E2EBBF /* XCRemoteSwiftPackageReference "secp256k1" */,
 			);
 			productRefGroup = CEF891222B9834BB0033AE93 /* Products */;
 			projectDirPath = "";
@@ -782,20 +787,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5057A7E82C35453E00E2EBBF /* XCRemoteSwiftPackageReference "K1" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Sajjon/K1.git";
-			requirement = {
-				kind = exactVersion;
-				version = 0.3.9;
-			};
-		};
 		5057A7EB2C354D8300E2EBBF /* XCRemoteSwiftPackageReference "SwiftECC" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/leif-ibsen/SwiftECC.git";
 			requirement = {
 				kind = exactVersion;
 				version = 5.3.0;
+			};
+		};
+		5057A7F22C368B8D00E2EBBF /* XCRemoteSwiftPackageReference "secp256k1" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GigaBitcoin/secp256k1.swift";
+			requirement = {
+				kind = exactVersion;
+				version = 0.17.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -806,10 +811,14 @@
 			package = 5057A7EB2C354D8300E2EBBF /* XCRemoteSwiftPackageReference "SwiftECC" */;
 			productName = SwiftECC;
 		};
-		5057A7F02C36780E00E2EBBF /* K1 */ = {
+		5057A7F52C368C3800E2EBBF /* secp256k1 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5057A7E82C35453E00E2EBBF /* XCRemoteSwiftPackageReference "K1" */;
-			productName = K1;
+			package = 5057A7F22C368B8D00E2EBBF /* XCRemoteSwiftPackageReference "secp256k1" */;
+			productName = secp256k1;
+		};
+		5057A7F92C368CF300E2EBBF /* secp256k1 */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = secp256k1;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
