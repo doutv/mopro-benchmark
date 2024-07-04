@@ -17,7 +17,8 @@ struct ExampleAppApp: App {
             //KeccakCircuitView()
             //KeccakDylibCircuitView()
             //Halo2CircuitView()
-            ComplexCircuitView()
+//            ComplexCircuitView()
+            EcdsaCircuitView()
         }
     }
 }
