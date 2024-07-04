@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5057A7E72C35040C00E2EBBF /* EcdsaCircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057A7E62C35040C00E2EBBF /* EcdsaCircuitView.swift */; };
 		5057A7ED2C354D8B00E2EBBF /* SwiftECC in Frameworks */ = {isa = PBXBuildFile; productRef = 5057A7EC2C354D8B00E2EBBF /* SwiftECC */; };
+		5057A7EF2C3647B400E2EBBF /* ECDSACircuitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057A7EE2C3647B400E2EBBF /* ECDSACircuitTests.swift */; };
+		5057A7F12C36780E00E2EBBF /* K1 in Frameworks */ = {isa = PBXBuildFile; productRef = 5057A7F02C36780E00E2EBBF /* K1 */; };
 		50A0EA542C25302F00F623B1 /* ComplexCircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A0EA532C25302F00F623B1 /* ComplexCircuitView.swift */; };
 		56E6EC72191EAD3A5962B55A /* Pods_ExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72C8A7A95288D49E1FC887A7 /* Pods_ExampleApp.framework */; };
 		5AFEF211D91E79BC9BA7BCBC /* Pods_ExampleApp_ExampleAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEEC28F7FAAB743796D5BC0 /* Pods_ExampleApp_ExampleAppUITests.framework */; };
@@ -51,6 +53,7 @@
 		34902FC9EAE055F0B5C523BE /* Pods-ExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-ExampleApp/Pods-ExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3EEEC28F7FAAB743796D5BC0 /* Pods_ExampleApp_ExampleAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleApp_ExampleAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5057A7E62C35040C00E2EBBF /* EcdsaCircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcdsaCircuitView.swift; sourceTree = "<group>"; };
+		5057A7EE2C3647B400E2EBBF /* ECDSACircuitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ECDSACircuitTests.swift; path = ExampleAppTests/ECDSACircuitTests.swift; sourceTree = SOURCE_ROOT; };
 		50A0EA532C25302F00F623B1 /* ComplexCircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexCircuitView.swift; sourceTree = "<group>"; };
 		601CBA362C0BD15F008F487B /* Halo2CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Halo2CircuitView.swift; sourceTree = "<group>"; };
 		62FB889F6A23D771D5DF296E /* Pods-ExampleAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ExampleAppTests/Pods-ExampleAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5057A7F12C36780E00E2EBBF /* K1 in Frameworks */,
 				5057A7ED2C354D8B00E2EBBF /* SwiftECC in Frameworks */,
 				56E6EC72191EAD3A5962B55A /* Pods_ExampleApp.framework in Frameworks */,
 			);
@@ -177,6 +181,7 @@
 		CEF891342B9834BC0033AE93 /* ExampleAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				5057A7EE2C3647B400E2EBBF /* ECDSACircuitTests.swift */,
 				CEF891352B9834BC0033AE93 /* ExampleAppTests.swift */,
 			);
 			path = ExampleAppTests;
@@ -221,6 +226,7 @@
 			name = ExampleApp;
 			packageProductDependencies = (
 				5057A7EC2C354D8B00E2EBBF /* SwiftECC */,
+				5057A7F02C36780E00E2EBBF /* K1 */,
 			);
 			productName = ExampleApp;
 			productReference = CEF891212B9834BB0033AE93 /* ExampleApp.app */;
@@ -428,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF891362B9834BC0033AE93 /* ExampleAppTests.swift in Sources */,
+				5057A7EF2C3647B400E2EBBF /* ECDSACircuitTests.swift in Sources */,
 				CE259ECC2B99DF5E0035CC36 /* mopro.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,7 +593,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExampleApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4V3PGC8XGH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -601,6 +608,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mopro.Groth16Test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -616,7 +625,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExampleApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4V3PGC8XGH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -631,6 +640,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mopro.Groth16Test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -643,14 +654,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2699K68G5P;
+				DEVELOPMENT_TEAM = 4V3PGC8XGH;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mopro.ExampleAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -664,14 +678,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2699K68G5P;
+				DEVELOPMENT_TEAM = 4V3PGC8XGH;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mopro.ExampleAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -684,13 +701,16 @@
 			baseConfigurationReference = C54051D9C0E3A7517C109F23 /* Pods-ExampleApp-ExampleAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2699K68G5P;
+				DEVELOPMENT_TEAM = R76CZAXDU6;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mopro.ExampleAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -703,13 +723,16 @@
 			baseConfigurationReference = F80B6518EE5CB44358676AD9 /* Pods-ExampleApp-ExampleAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2699K68G5P;
+				DEVELOPMENT_TEAM = R76CZAXDU6;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mopro.ExampleAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -782,6 +805,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5057A7EB2C354D8300E2EBBF /* XCRemoteSwiftPackageReference "SwiftECC" */;
 			productName = SwiftECC;
+		};
+		5057A7F02C36780E00E2EBBF /* K1 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5057A7E82C35453E00E2EBBF /* XCRemoteSwiftPackageReference "K1" */;
+			productName = K1;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

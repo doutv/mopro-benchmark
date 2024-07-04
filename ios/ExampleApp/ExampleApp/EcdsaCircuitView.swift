@@ -45,6 +45,76 @@ struct EcdsaCircuitView: View {
     }
 }
 
+func generateGPowers(domain: Domain, keyPoint: Point) throws -> [String] {
+    let STRIDE = 8
+    let NUM_STRIDES = 256 / STRIDE
+    var gPowers: [String] = [] // [32][256][2][4]
+    // 32*256 = 8192 point multiplication
+    for i in 0..<NUM_STRIDES {
+        let power = BInt(2) ** (i * STRIDE)
+        print(i)
+        for j in 0..<(1 << STRIDE) {
+            let l = BInt(j) * power
+            let gPower = try domain.multiplyPoint(keyPoint, l)
+            let x = gPower.x.asString(radix: 16)
+            let y = gPower.y.asString(radix: 16)
+            gPowers.append(x)
+            gPowers.append(y)
+        }
+    }
+    return gPowers
+}
+
+public func prove() throws -> (proof: Data, inputs: Data) {
+    // Keygen, Sign, Verify
+    let domain = Domain.instance(curve: .EC256k1)
+    let (pk, sk) = domain.makeKeyPair()
+    let message = "test".data(using: .utf8)!
+    let sig = sk.sign(msg: message)
+    assert (
+       pk.verify(signature: sig, msg: message)
+    )
+    
+    // Prepare circuit inputs
+    // 1. Take computation out of the SNARK
+    let r = BInt(magnitude: sig.r)
+    let s = BInt(magnitude: sig.s)
+    let R = try domain.multiplyPoint(domain.g, r)
+    let rInv = r.modInverse(domain.order)
+    // T = r^-1 * R
+    let T = try domain.multiplyPoint(R, rInv)
+    let md = MessageDigest(MessageDigest.Kind.SHA2_256)
+    md.update(Bytes(message))
+    let digest = md.digest()
+    var msg = BInt(magnitude: digest)
+    let d = digest.count * 8 - domain.order.bitWidth
+    if d > 0 {
+        msg >>= d
+    }
+    // U = (-r^-1 * msg * G)
+    let U = try domain.multiplyPoint(domain.g, (-rInv * msg).mod(domain.order))
+    // s*T + U = pk
+    let left: Point = try domain.addPoints(try domain.multiplyPoint(T, s), U)
+//                 assert (
+//                    left == pk.w
+//                 )
+    
+    // 2. Precomputing point multiples
+    let TPowers = try generateGPowers(domain: domain, keyPoint: T)
+    
+    var inputs = [String: [String]]()
+    inputs["TPreComputes"] = TPowers
+    inputs["U"] = [U.x.asString(radix: 16), U.y.asString(radix: 16)]
+    inputs["s"] = [s.asString(radix: 16)]
+
+    // Generate Proof
+    let generateProofResult = try generateProof2(circuitInputs: inputs)
+    assert(!generateProofResult.proof.isEmpty, "Proof should not be empty")
+    //FIXME: Difference between moproCircom.generateProof and generateProof2
+    //assert(Data(expectedOutput) == generateProofResult.inputs, "Circuit outputs mismatch the expected outputs")
+    return (generateProofResult.proof, generateProofResult.inputs)
+}
+
 extension EcdsaCircuitView {
     func runInitAction() {
         textViewText += "Initializing library... "
@@ -66,70 +136,13 @@ extension EcdsaCircuitView {
          textViewText += "Generating proof... "
          Task {
              do {
-                 let domain = Domain.instance(curve: .EC256k1)
-                 let (pk, sk) = domain.makeKeyPair()
-                 let message = "test".data(using: .utf8)!
-                 let sig = sk.sign(msg: message)
-                 assert (
-                    pk.verify(signature: sig, msg: message)
-                 )
-                 
-                 let r = BInt(magnitude: sig.r)
-                 let s = BInt(magnitude: sig.s)
-                 let R = try domain.multiplyPoint(domain.g, r)
-                 let rInv = r.modInverse(domain.order)
-                 // T = r^-1 * R
-                 let T = try domain.multiplyPoint(R, rInv)
-                 let md = MessageDigest(MessageDigest.Kind.SHA2_256)
-                 md.update(Bytes(message))
-                 let digest = md.digest()
-                 var msg = BInt(magnitude: digest)
-                 let d = digest.count * 8 - domain.order.bitWidth
-                 if d > 0 {
-                     msg >>= d
-                 }
-                 // U = (-r^-1 * msg * G)
-                 let U = try domain.multiplyPoint(domain.g, (-rInv * msg).mod(domain.order))
-                 // s*T + U = pk
-                 let left: Point = try domain.addPoints(try domain.multiplyPoint(T, s), U)
-                 assert (
-                    left == pk.w
-                 )
-                 
-                 // Prepare inputs
-                 let inputVec: [UInt8] = [
-                     116, 101, 115, 116, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                     0, 0, 0, 0, 0, 0,
-                 ]
-                 let bits = bytesToBits(bytes: inputVec)
-                 var inputs = [String: [String]]()
-                 inputs["in"] = bits
-
-                 // Expected outputs
-                 let outputVec: [UInt8] = [
-                     37, 17, 98, 135, 161, 178, 88, 97, 125, 150, 143, 65, 228, 211, 170, 133, 153, 9, 88,
-                     212, 4, 212, 175, 238, 249, 210, 214, 116, 170, 85, 45, 21,
-                 ]
-                 let outputBits: [String] = bytesToBits(bytes: outputVec)
-                 let _: [UInt8] = serializeOutputs(outputBits) // expectedOutput not used
-
                  let start = CFAbsoluteTimeGetCurrent()
-
-                 // Generate Proof
-                 let generateProofResult = try generateProof2(circuitInputs: inputs)
-                 assert(!generateProofResult.proof.isEmpty, "Proof should not be empty")
-                 //FIXME: Difference between moproCircom.generateProof and generateProof2
-                 //assert(Data(expectedOutput) == generateProofResult.inputs, "Circuit outputs mismatch the expected outputs")
-
+                 // Store the generated proof and public inputs for later verification
+                 let (generatedProof, publicInputs) = try prove()
                  let end = CFAbsoluteTimeGetCurrent()
                  let timeTaken = end - start
-
-                 // Store the generated proof and public inputs for later verification
-                 generatedProof = generateProofResult.proof
-                 publicInputs = generateProofResult.inputs
-
+                 
                  textViewText += "\(String(format: "%.3f", timeTaken))s\n"
-
                  isVerifyButtonEnabled = true
              } catch {
                  textViewText += "\nProof generation failed: \(error.localizedDescription)\n"
