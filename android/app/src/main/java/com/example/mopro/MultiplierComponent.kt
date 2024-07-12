@@ -17,6 +17,17 @@ import uniffi.mopro.GenerateProofResult
 import uniffi.mopro.generateProof2
 import uniffi.mopro.initializeMopro
 import uniffi.mopro.verifyProof2
+import android.content.Context
+import androidx.compose.ui.platform.LocalContext
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
+fun loadJsonFromAssets(context: Context, fileName: String): Map<String, List<String>> {
+    val jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+    val gson = Gson()
+    val type = object : TypeToken<Map<String, List<String>>>() {}.type
+    return gson.fromJson(jsonString, type)
+}
 
 @Composable
 fun MultiplierComponent() {
@@ -24,17 +35,13 @@ fun MultiplierComponent() {
     var provingTime by remember { mutableStateOf("proving time:") }
     var verifyingTime by remember { mutableStateOf("verifying time: ") }
     var valid by remember { mutableStateOf("valid:") }
-    var output by remember { mutableStateOf("output:") }
     var res by remember {
         mutableStateOf<GenerateProofResult>(
             GenerateProofResult(proof = ByteArray(size = 0), inputs = ByteArray(size = 0))
         )
     }
 
-    val inputs = mutableMapOf<String, List<String>>()
-    inputs["a"] = listOf("3")
-    inputs["b"] = listOf("5")
-
+    val inputs = loadJsonFromAssets(LocalContext.current, "input.json")
     Box(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
         Button(
             onClick = {
@@ -76,7 +83,6 @@ fun MultiplierComponent() {
                 valid = "valid: " + verifyProof2(res.proof, res.inputs).toString()
                 val endTime = System.currentTimeMillis()
                 verifyingTime = "verifying time: " + (endTime - startTime).toString() + " ms"
-                output = "output: " + uniffi.mopro.toEthereumInputs(res.inputs)
             },
             modifier = Modifier.padding(top = 120.dp)
         ) { Text(text = "verify proof") }
@@ -86,10 +92,9 @@ fun MultiplierComponent() {
             fontWeight = FontWeight.Bold
         )
 
-        Text(text = initTime, modifier = Modifier.padding(top = 200.dp).width(200.dp))
-        Text(text = provingTime, modifier = Modifier.padding(top = 250.dp).width(200.dp))
-        Text(text = valid, modifier = Modifier.padding(top = 300.dp).width(200.dp))
-        Text(text = verifyingTime, modifier = Modifier.padding(top = 350.dp).width(200.dp))
-        Text(text = output, modifier = Modifier.padding(top = 400.dp).width(200.dp))
+        Text(text = initTime, modifier = Modifier.padding(top = 300.dp).width(400.dp))
+        Text(text = provingTime, modifier = Modifier.padding(top = 350.dp).width(400.dp))
+        Text(text = valid, modifier = Modifier.padding(top = 400.dp).width(400.dp))
+        Text(text = verifyingTime, modifier = Modifier.padding(top = 450.dp).width(400.dp))
     }
 }
