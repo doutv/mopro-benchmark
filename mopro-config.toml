@@ -12,16 +12,15 @@ build_mode = "release" # Options: debug, release
 
 [circuit]
 adapter = "circom"
+# Change circuit here
+dir = "core/circuits/rsa"
+name = "rsa"
+ptau = "21"
 
 # multiplier2
 # dir = "core/circuits/multiplier2"
 # name = "multiplier2"
 # ptau = "02"                       # ptau to use for trusted setup of circuit, "01" to "27"
-
-# complex-circuit for benchmark
-dir = "core/circuits/ecdsa"
-name = "ecdsa"
-ptau = "21"
 
 # keccak256
 #dir = "core/circuits/keccak256"
