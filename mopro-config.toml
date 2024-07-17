@@ -13,8 +13,8 @@ build_mode = "release" # Options: debug, release
 [circuit]
 adapter = "circom"
 # Change circuit here
-dir = "core/circuits/rsa"
-name = "rsa"
+dir = "core/circuits/eddsa"
+name = "eddsa"
 ptau = "21"
 
 # multiplier2

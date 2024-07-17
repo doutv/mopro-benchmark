@@ -1,7 +1,6 @@
 package com.example.mopro
 
-import KeccakComponent
-import MultiplierComponent
+import BenchmarkComponent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,7 +22,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                 ) {
-                        MultiplierComponent()
+                        BenchmarkComponent()
                         //KeccakComponent()
                 }
             }

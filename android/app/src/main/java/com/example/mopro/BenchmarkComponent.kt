@@ -30,18 +30,19 @@ fun loadJsonFromAssets(context: Context, fileName: String): Map<String, List<Str
 }
 
 @Composable
-fun MultiplierComponent() {
+fun BenchmarkComponent() {
     var initTime by remember { mutableStateOf("init time:") }
     var provingTime by remember { mutableStateOf("proving time:") }
     var verifyingTime by remember { mutableStateOf("verifying time: ") }
     var valid by remember { mutableStateOf("valid:") }
+    var proofSize by remember { mutableStateOf("proof size:") }
     var res by remember {
         mutableStateOf<GenerateProofResult>(
             GenerateProofResult(proof = ByteArray(size = 0), inputs = ByteArray(size = 0))
         )
     }
 
-    val inputs = loadJsonFromAssets(LocalContext.current, "input.json")
+    val inputs = loadJsonFromAssets(LocalContext.current, "eddsa_input.json")
     Box(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
         Button(
             onClick = {
@@ -71,6 +72,7 @@ fun MultiplierComponent() {
                             "proving time: " +
                                     (endTime - startTime).toString() +
                                     " ms"
+                        proofSize = "proof size: " + res.proof.size.toString() + " bytes"
                     }
                 )
                     .start()
@@ -87,14 +89,15 @@ fun MultiplierComponent() {
             modifier = Modifier.padding(top = 120.dp)
         ) { Text(text = "verify proof") }
         Text(
-            text = "Multiplier proof",
+            text = "Mopro Benchmark",
             modifier = Modifier.padding(bottom = 180.dp),
             fontWeight = FontWeight.Bold
         )
 
         Text(text = initTime, modifier = Modifier.padding(top = 300.dp).width(400.dp))
         Text(text = provingTime, modifier = Modifier.padding(top = 350.dp).width(400.dp))
-        Text(text = valid, modifier = Modifier.padding(top = 400.dp).width(400.dp))
-        Text(text = verifyingTime, modifier = Modifier.padding(top = 450.dp).width(400.dp))
+        Text(text = proofSize, modifier = Modifier.padding(top = 400.dp).width(400.dp))
+        Text(text = valid, modifier = Modifier.padding(top = 450.dp).width(400.dp))
+        Text(text = verifyingTime, modifier = Modifier.padding(top = 500.dp).width(400.dp))
     }
 }

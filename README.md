@@ -21,10 +21,13 @@ cp -r ../mopro/mopro-core/examples/circom/complex-circuit ./core/circuits/comple
 find ./core/circuits/complex-circuit/target -type f \( -name "*_final.zkey" -o -name "*.wasm" \) -exec cp {} ./web/public \;
 
 # 3. define circuit in mopro-config.toml
+
+# Android: change input.json in BenchmarkComponent.kt
+# iOS: change input.json in BenchmarkViewController.swift
 ```
 ### Build
 
-`mopro build` or `mopro build --platforms ios`
+`mopro build --platforms android` or `mopro build --platforms ios`
 
 ### Test
 
