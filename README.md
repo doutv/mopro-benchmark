@@ -11,20 +11,11 @@ See https://github.com/zkmopro/mopro
 ### Prepare
 
 ```sh
-# 1. Build circuits under mopro root repo
-git clone https://github.com/doutv/circom-benchmark
-./1-prepare.sh
-
-# 2. Then copy the circuits to this project
-cp -r ../mopro/mopro-core/examples/circom/complex-circuit ./core/circuits/complex-circuit
-# Copy final.zkey and wasm to web/public, used in web prover
-find ./core/circuits/complex-circuit/target -type f \( -name "*_final.zkey" -o -name "*.wasm" \) -exec cp {} ./web/public \;
-
-# 3. define circuit in mopro-config.toml
-
-# Android: change input.json in BenchmarkComponent.kt
-# iOS: change input.json in BenchmarkViewController.swift
+# See all available circuits under core/circuits
+./prepare.sh eddsa
+./prepare.sh ecdsa
 ```
+
 ### Build
 
 `mopro build --platforms android` or `mopro build --platforms ios`
@@ -32,3 +23,9 @@ find ./core/circuits/complex-circuit/target -type f \( -name "*_final.zkey" -o -
 ### Test
 
 `mopro test`
+
+### Web Server
+```sh
+# Copy final.zkey and wasm to web/public, used in web prover
+find ./core/circuits/complex-circuit/target -type f \( -name "*_final.zkey" -o -name "*.wasm" \) -exec cp {} ./web/public \;
+```
