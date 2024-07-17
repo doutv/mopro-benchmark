@@ -9,6 +9,7 @@ See https://github.com/zkmopro/mopro
 ## Usage
 
 ### Prepare
+Install Mopro v0.0.1, docs: https://zkmopro.org/docs/getting-started/
 
 ```sh
 # See all available circuits under core/circuits
