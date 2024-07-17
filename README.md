@@ -17,6 +17,8 @@ Install Mopro v0.0.1, docs: https://zkmopro.org/docs/getting-started/
 ./prepare.sh ecdsa
 ```
 
+In `mopro-config.toml`, set the `circuit` field to the circuit you want to use. 
+
 ### Build
 
 `mopro build --platforms android` or `mopro build --platforms ios`
