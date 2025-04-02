@@ -5,8 +5,9 @@ Benchmark Mopro's performance on different circuits, on different phones.
 Mopro is a mobile ZK proving framework, unlocking real Zero-Knowledge: https://github.com/zkmopro/mopro
 
 # Circom Results
-> Mopro version: v0.0.1
-> Benchmark date: 2024-07
+Mopro version: v0.0.1
+
+Benchmark date: 2024-07
 
 | Circuit | Device | Time (s) | Memory (MB) | zkey Size (MB) | Constraints |
 |---------|---------|-----------|-------------|--------------|-------------|
