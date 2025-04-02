@@ -30,10 +30,10 @@ Benchmark date: 2024-07
 | Dummy-100k | Xiaomi 12SU | 2.7 | 256 | 50 | 100000 |
 
 Note:
-- [efficient-zk-ecdsa](https://github.com/personaelabs/efficient-zk-ecdsa) an highly optimized ECDSA circuit.
-- [eddsa-babyjubjub](https://github.com/iden3/circomlib/blob/master/circuits/eddsamimc.circom) a EDDSA circuit on BabyJubJub curve. native field arithmetic, so that it's constraints are much lower.
-- [RSA] Verify RSA signature
-- [Dummy-3200k] from mopro, a dummy circuit with 3200k constraints. Since Groth16 proving time only depends on constraints, this is a good proxy for the proving time of a complex circuit.
+- [efficient-zk-ecdsa](https://github.com/personaelabs/efficient-zk-ecdsa): an highly optimized ECDSA circuit.
+- [eddsa-babyjubjub](https://github.com/iden3/circomlib/blob/master/circuits/eddsamimc.circom): a EDDSA circuit on BabyJubJub curve. native field arithmetic, so that it's constraints are much lower.
+- RSA: Verify RSA signature
+- Dummy-3200k from mopro, a dummy circuit with 3200k constraints. Since Groth16 proving time only depends on constraints, this is a good proxy for the proving time of a complex circuit.
 
 ## Usage
 
